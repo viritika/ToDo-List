@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO LIST</title>
+    <style>
+        body {
+            display: grid;
+            justify-content: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: #e9e9e9;
+        }
+
+        .main {
+            text-align: center;
+            display: grid;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10%;
+            background: #fff;
+        }
+
+        h2 {
+            color: purple;
+        }
+
+        .header {
+            display: flex;
+        }
+
+        #myInput {
+            width: 400px;
+            outline: none;
+            border: 2px solid purple;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+        #List {
+            display: grid;
+            padding: 20px;
+        }
+
+        li {
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            line-height: 50px;
+            width: 100%;
+            padding: 0px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 1px 1px 10px gainsboro;
+        }
+
+        li:hover {
+            background-color: #eeeeee;
+        }
+
+
+        .addBtn {
+            color: white;
+            background-color: purple;
+            padding: 10px 40px;
+            border: none;
+            cursor: pointer;
+            border-radius: 0px 5px 5px 0px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2>My To Do List</h2>
+        <div id="myDIV" class="header">
+            <input type="text" id="myInput" placeholder="Title...">
+            <button onclick="newElement()" class="addBtn">Add</button>
+        </div>
+
+        <div id="List">
+            <li>Hit the gym</li>
+            <li>Pay bills</li>
+            <li>Meet George</li>
+            <li>Buy eggs </li>
+            <li>Read a book</li>
+            <li>Organize office</li>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    var myNodelist = document.getElementsByTagName("li");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("x");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("List").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("x");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+
+</script>
+
+</html>
